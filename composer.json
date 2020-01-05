@@ -1,0 +1,12 @@
+{
+	"name": "prolib/datagrid",
+	"description": "extension for contributte/datagrid",
+	"require": {
+		"ublaboo/datagrid": "^6.2.5"
+	},
+	"autoload": {
+		"psr-4": {
+			"ProLib\\DataGrid\\": "src/"
+		}
+	}
+}
