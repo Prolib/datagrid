@@ -2,7 +2,8 @@
 	"name": "prolib/datagrid",
 	"description": "extension for contributte/datagrid",
 	"require": {
-		"ublaboo/datagrid": "^6.2.5"
+		"ublaboo/datagrid": "^6.2.5",
+		"webchemistry/i18n-dateformatter": "^1.0"
 	},
 	"autoload": {
 		"psr-4": {
