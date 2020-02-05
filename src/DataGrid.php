@@ -9,7 +9,7 @@ use Ublaboo\DataGrid\Column\Action\Confirmation\StringConfirmation;
 use Ublaboo\DataGrid\Column\ColumnNumber;
 use Ublaboo\DataGrid\DataGrid as DataGridAlias;
 
-final class DataGrid extends DataGridAlias {
+class DataGrid extends DataGridAlias {
 
 	public function addColumnBoolean(string $key, string $name, ?string $column = null): BooleanColumn {
 		$column = $column ?: $key;
