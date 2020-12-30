@@ -92,7 +92,9 @@ final class DataGridBuilder {
 		$entity = $this->em->getRepository($this->metadata->getName())->find($id);
 
 		if ($entity) {
-			$beforeDelete($entity);
+			if ($beforeDelete) {
+				$beforeDelete($entity);
+			}
 
 			$this->em->remove($entity);
 			$this->em->flush();
@@ -124,7 +126,7 @@ final class DataGridBuilder {
 		$type = $options['type'] ?? $mapping['type'];
 
 		$this->createColumn($name, $caption, $type);
-		$this->applyFilter($name, $type);
+		$this->applyFilter($name, $type, $options);
 
 		return $this->grid->getColumn($name);
 	}
@@ -135,7 +137,7 @@ final class DataGridBuilder {
 		return $this->grid;
 	}
 
-	protected function applyFilter(string $name, string $type): void {
+	protected function applyFilter(string $name, string $type, array $options): void {
 		$column = $this->grid->getColumn($name);
 		switch ($type) {
 			case 'integer':
@@ -148,7 +150,11 @@ final class DataGridBuilder {
 				break;
 			case 'datetime':
 			case 'date':
-				$column->setFilterDate();
+				if ($options['range'] ?? false) {
+					$column->setFilterDateRange();
+				} else {
+					$column->setFilterDate();
+				}
 				break;
 			default:
 				throw new InvalidArgumentException('Column ' . $type . ' is not supported');
